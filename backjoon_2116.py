@@ -1,5 +1,6 @@
 # 주사위 쌓기
 import sys
+sys.setrecursionlimit(100000)
 
 input = sys.stdin.readline
 
