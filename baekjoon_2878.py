@@ -9,11 +9,13 @@ friends = []
 for _ in range(n):
     friends.append(int(input()))
 
+friends.sort()
 difference = sum(friends) - m
 amount = 0
 
 for i in range(n):
-    amount += (difference // (n - i)) ** 2
-    difference -= difference // (n - i)
+    tmp = min(friends[i], difference // (n - i))
+    amount += tmp ** 2
+    difference -= tmp
 
-print(amount)
+print(amount % 2**64)
