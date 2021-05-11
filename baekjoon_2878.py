@@ -9,9 +9,30 @@ friends = []
 for _ in range(n):
     friends.append(int(input()))
 
-for _ in range(m):
-    if max(friends) == 0:
-        continue
-    friends[friends.index(max(friends))] -= 1
+difference = sum(friends) - m
+amount = 0
 
-print(sum(map(lambda x: x**2, friends)))
+for i in range(n, 0, -1):
+    if i == 1:
+        amount += difference ** 2
+        break
+
+    amount += (difference % i) ** 2
+    difference -= difference % i
+
+print(amount % 2**64)
+
+# 5개 4명
+
+# case 1
+# 1 2 3 4
+# 0 0 2 3
+# 1 4 1 1 = 7
+
+# case 2
+# 1 2 3 4
+# 0 0 1 4
+# 1 4 4 0 = 9
+
+# case 3
+#
