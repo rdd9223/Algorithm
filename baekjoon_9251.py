@@ -16,10 +16,9 @@ for i in range(fLen + 1):
         if i == 0 or j == 0:
             table[i][j] = 0
 
-        if first[i - 1] == second[j - 1]:
+        elif first[i - 1] == second[j - 1]:
             table[i][j] = table[i-1][j] + 1
 
         else:
             table[i][j] = max(table[i - 1][j], table[i][j-1])
-
 print(table[fLen][sLen])
