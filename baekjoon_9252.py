@@ -15,7 +15,7 @@ for i in range(sLen + 1):
         if i == 0 or j == 0:
             continue
         elif first[j - 1] == second[i - 1]:
-            memory[i][j] = memory[i][j-1] + 1
+            memory[i][j] = memory[i-1][j-1] + 1
         else:
             memory[i][j] = max(memory[i - 1][j], memory[i][j - 1])
 
@@ -28,7 +28,7 @@ if memory[sLen][fLen] != 0:
         for j in reversed(range(startPoint)):
             if j == 0:
                 break
-            if memory[i][j - 1] != memory[i][j]:
+            if memory[i][j - 1] != memory[i][j] and memory[i-1][j] != memory[i][j]:
                 startPoint = j
                 lcs.append(first[j - 1])
                 break
