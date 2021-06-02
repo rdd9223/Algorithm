@@ -19,18 +19,18 @@ for i in range(sLen + 1):
         else:
             memory[i][j] = max(memory[i - 1][j], memory[i][j - 1])
 
+lcs = []
 print(memory[sLen][fLen])
 
-if memory[sLen][fLen] != 0:
-    startPoint = fLen + 1
-    lcs = []
-    for i in reversed(range(sLen + 1)):
-        for j in reversed(range(startPoint)):
-            if j == 0:
-                break
-            if memory[i][j - 1] != memory[i][j] and memory[i-1][j] != memory[i][j]:
-                startPoint = j
-                lcs.append(first[j - 1])
-                break
+while fLen > 0 and sLen > 0:
+    if memory[sLen][fLen - 1] == memory[sLen][fLen]:
+        fLen -= 1
+    elif memory[sLen - 1][fLen] == memory[sLen][fLen]:
+        sLen -= 1
+    else:
+        lcs.append(first[fLen-1])
+        fLen -= 1
+        sLen -= 1
+if lcs:
     reverseLcs = "".join(lcs[::-1])
     print(reverseLcs)
