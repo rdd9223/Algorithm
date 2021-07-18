@@ -7,7 +7,7 @@ N = int(input())
 solutions = list(map(int, input().split()))
 
 solutions.sort()
-minimum = 0
+minimum = solutions[0] + solutions[N - 1]
 answerLeft = 0
 answerRight = N - 1
 left = 0
