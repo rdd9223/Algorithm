@@ -29,23 +29,29 @@ def bfs(x, y):
         x, y = q.popleft()
         for i in range(4):
             nx, ny = x + dx[i], y + dy[i]
-            while True:
-                if nx < 0 or nx >= n or ny < 0 or ny >= n:
-                    break
-                if field[nx][ny] == '*':
-                    break
-                if visited[nx][ny] < visited[x][y] + 1:
-                    break
-                # if field[nx][ny] == '!':
-                #     break
-                q.append((nx, ny))
+            if nx < 0 or nx >= n or ny < 0 or ny >= n:
+                continue
+            if visited[nx][ny] < visited[x][y] + 1:
+                continue
+            if field[nx][ny] == '*':
+                continue
+            visited[nx][ny] = visited[x][y]
+            q.append((nx, ny))
+            if field[nx][ny] == '!':
                 visited[nx][ny] = visited[x][y] + 1
-                nx += dx[i]
-                ny += dy[i]
 
 
 (sx, sy), (ex, ey) = S
 
 bfs(sx, sy)
 
-print(visited[ex][ey] - 1)
+print(visited[ex][ey])
+
+'''
+5
+***#*
+*.!.*
+*!!!*
+*!!.*
+*#***
+'''
