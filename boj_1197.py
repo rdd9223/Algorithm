@@ -1,4 +1,5 @@
 # 최소 스패닝 트리
+# pypy3로 시도하면 성공, 프림 알고리즘
 import collections
 import heapq
 import sys
