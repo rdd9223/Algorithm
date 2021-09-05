@@ -26,6 +26,8 @@ def bfs(x, y):
     visited[x][y] = 0
 
     while q:
+        # 진수님: 현재 거울의 갯수를 작성해서 최소인지 비교하기
+        # 성찬님: 우선순위 큐를 이용한 방법!
         x, y = q.popleft()
         for i in range(4):
             nx, ny = x + dx[i], y + dy[i]
