@@ -25,33 +25,37 @@ def solution(n, k, cmds):
 
     for cmd in cmds:
         if cmd[0] == 'U':
-            for _ in range(int(cmd[-1])):
+            for _ in range(int(cmd[2:])):
                 currentRow = currentRow.prev
         elif cmd[0] == 'D':
-            for _ in range(int(cmd[-1])):
+            for _ in range(int(cmd[2:])):
                 currentRow = currentRow.next
         elif cmd[0] == 'C':
-            currentRow.isDeleted = True
             deletedHistory.append(currentRow)
+            currentRow.isDeleted = True
 
-            if currentRow.prev:
-                currentRow.prev.next = currentRow.next
-            if currentRow.next:
-                currentRow.next.prev = currentRow.prev
+            up = currentRow.prev
+            down = currentRow.next
 
-            if currentRow.next == None:
-                currentRow = currentRow.prev
+            if up:
+                up.next = down
+            if down:
+                down.prev = up
+                currentRow = down
             else:
-                currentRow = currentRow.next
+                currentRow = up
 
-        elif cmd[0] == 'Z':
-            recoverRow = deletedHistory.pop()
-            recoverRow.isDeleted = False
+        else:
+            recoveredRow = deletedHistory.pop()
+            recoveredRow.isDeleted = False
 
-            if recoverRow.prev:
-                recoverRow.prev.next = recoverRow
-            if recoverRow.next:
-                recoverRow.next.prev = recoverRow
+            up = recoveredRow.prev
+            down = recoveredRow.next
+
+            if up:
+                up.next = recoveredRow
+            if down:
+                down.prev = recoveredRow
 
     for row in rows:
         if row.isDeleted == False:
